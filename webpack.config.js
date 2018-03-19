@@ -1,3 +1,7 @@
+require('dotenv').config();
+
+const webpack = require('webpack');
+
 module.exports = {
   entry: [
     './src/index.js'
@@ -22,5 +26,10 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     contentBase: './'
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.WEATHER_API_KEY': JSON.stringify(process.env.WEATHER_API_KEY)
+    })
+  ]
 };
